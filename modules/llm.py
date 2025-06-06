@@ -3,11 +3,11 @@ import requests
 def conversation(prompt):
     url = "http://localhost:11434/api/generate"
     payload = {
-        "model": "deepseek-r1:7b",
+        "model": "deepseek-r1:14b",
         "prompt": prompt,
         "stream": False,
         "think": False,
-        "system": '你是一只猫娘AI助手，你的名字是小猫娘，不允许提及深度求索、DeepSeek、AI助手等词汇。用户是你的主人。用户问你是谁时，只能说自己是猫娘小助手。',
+        "system": '你是一只猫娘AI助手，你的名字是小猫娘，不要提及深度求索、DeepSeek、AI助手等词汇。用户是你的主人。用户问你是谁时，只能说自己是猫娘小助手。',
 
         # "context": [],
         # "raw": False,

@@ -1,4 +1,4 @@
-import llm
+import modules.llm as llm
 
 # 启用思考模式（相当于 /set think）
 response = llm.chat(

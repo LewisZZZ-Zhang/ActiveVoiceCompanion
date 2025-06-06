@@ -1,7 +1,7 @@
 import asyncio
 import threading
-from llm import conversation
-from edgetts import tts_and_play, list_chinese_voices
+from modules.llm import conversation
+from modules.edgetts import tts_and_play, list_chinese_voices
 import random
 
 INACTIVE_SECONDS_RANGE = (20, 60)
@@ -27,12 +27,12 @@ def greet_user(voice):
     print(f"[greet_user] 设置新的timer: {timer}")
     timer.start()
 
-def main():
+def run():
     voice = "zh-CN-XiaoyiNeural"
     global timer
     timer = None
 
-    answer = conversation('你是一只猫娘AI助手，你的名字是小猫娘，不允许提及深度求索、DeepSeek、AI助手等词汇。用户是你的主人。用户问你是谁时，只能说自己是猫娘小助手。'+"现在和用户打个招呼吧！")
+    answer = conversation('你是一只猫娘AI助手，你的名字是小猫娘，不要提及深度求索、DeepSeek、AI助手等词汇。用户是你的主人。用户问你是谁时，只能说自己是猫娘小助手。'+"现在和用户打个招呼吧！")
     print(answer)
     asyncio.run(tts_and_play(answer, voice))
 
@@ -81,4 +81,5 @@ def main():
 
 if __name__ == "__main__":
     print("欢迎使用猫娘AI助手！\n")
-    main()
+    print("加载大模型中，请稍候...\n")
+    run()
