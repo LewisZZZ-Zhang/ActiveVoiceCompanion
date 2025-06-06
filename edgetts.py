@@ -6,6 +6,7 @@ from pydub import AudioSegment
 from pydub.playback import play
 import edge_tts
 import asyncio
+import os
 
 # xiaoxiao，xiaoyi好听，xiaoyi更幼一点
 # yunxia有点像罗小黑这种，也算猫吧
@@ -27,6 +28,8 @@ def test_all_chinese_voices():
 
 # ...existing code...
 async def tts_and_play(text, voice="zh-CN-XiaoyiNeural", file_path="tmp/tmp_output.mp3"):
+    # 自动创建 tmp 文件夹
+    os.makedirs(os.path.dirname(file_path), exist_ok=True)
     communicate = edge_tts.Communicate(text, voice=voice)
     await communicate.save(file_path)
     audio = AudioSegment.from_file(file_path)
