@@ -25,15 +25,16 @@ def test_all_chinese_voices():
             asyncio.run(communicate.save(f'voice/output_{v["ShortName"]}.mp3'))
             print(f'Saved output to voice/output_{v["ShortName"]}.mp3')
 
-async def tts_and_play(text, voice="zh-CN-XiaoyiNeural", file_path="voice/tmp_output.mp3"):
+# ...existing code...
+async def tts_and_play(text, voice="zh-CN-XiaoyiNeural", file_path="tmp/tmp_output.mp3"):
     communicate = edge_tts.Communicate(text, voice=voice)
     await communicate.save(file_path)
-    # print(f"已保存到 {file_path}")
     audio = AudioSegment.from_file(file_path)
     play(audio)
+# ...existing code...
 
 if __name__ == "__main__":
     # list_chinese_voices()
     # test_all_chinese_voices()
-    asyncio.run(tts_and_play("你好，你在干什么啊。"))
+    asyncio.run(tts_and_play("你在干嘛啊啊啊！去main里面跑代码啊！"))
 

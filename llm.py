@@ -3,7 +3,7 @@ import requests
 def conversation(prompt):
     url = "http://localhost:11434/api/generate"
     payload = {
-        "model": "deepseek-r1:14b",
+        "model": "deepseek-r1:7b",
         "prompt": prompt,
         "stream": False,
         "think": False,
