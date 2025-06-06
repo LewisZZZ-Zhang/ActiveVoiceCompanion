@@ -1,0 +1,6 @@
+ollama run deepseek-r1:14b
+
+
+rm -rf "/Users/Lewis/Library/Application Support/tts/tts_models--zh-CN--baker--tacotron2-DDC-GST"
+export HF_ENDPOINT=https://hf-mirror.com
+python3 coquitts.py
