@@ -11,33 +11,15 @@
 
 ## 安装依赖
 
-1. **克隆项目并进入目录**
-    ```bash
-    git clone <你的仓库地址>
-    cd ActiveVoiceCompanion
-    ```
-
-2. **创建并激活虚拟环境**
-    ```bash
-    python3 -m venv venv
-    source venv/bin/activate
-    ```
-
-3. **安装 Python 依赖**
-    ```bash
-    pip install -r requirements.txt
-    ```
-
-4. **安装 ffmpeg（pydub 需要）**
-    ```bash
-    brew install ffmpeg
-    ```
+/usr/local/bin/python3.11 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
 
 ## 运行方法
 
-```bash
 python main.py
-```
+或者
+python ui_main.py
 
 ## 可用命令
 
@@ -47,19 +29,12 @@ python main.py
 - `/voice set` 设置新的语音ID
 - `/help` 查看帮助
 
-## 目录结构
-
-- `main.py`：主程序入口
-- `llm.py`：大模型对话接口
-- `edgetts.py`：语音合成与播放
-- `语言库/猫娘用户挂机语言库.txt`：挂机问候语库
-- `tmp/`：临时音频文件夹（不会上传到GitHub）
-
 ## 注意事项
 
 - 请确保本地有 Ollama 或其他 LLM 服务，并已正确配置 `llm.py` 的接口地址。
 - `tmp/` 文件夹用于存放临时音频，已在 `.gitignore` 中忽略。
 - 需要联网以使用 Edge TTS 服务。
+- 最好是官方下载的python，不然好像tinker会有什么问题
 
 ---
 
