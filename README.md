@@ -10,18 +10,19 @@
 - 支持自定义语音库和语音风格
 
 ## 安装依赖
-’‘’bash
+```bash
 /usr/local/bin/python3.11 -m venv venv
-‘’‘
-
 source venv/bin/activate
 pip install -r requirements.txt
+```
 
 ## 运行方法
 
+```bash
 python main.py
-或者
+# 或
 python ui_main.py
+```
 
 ## 可用命令
 
