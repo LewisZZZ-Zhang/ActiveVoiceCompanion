@@ -10,8 +10,10 @@
 - 支持自定义语音库和语音风格
 
 ## 安装依赖
-
+’‘’bash
 /usr/local/bin/python3.11 -m venv venv
+‘’‘
+
 source venv/bin/activate
 pip install -r requirements.txt
 
