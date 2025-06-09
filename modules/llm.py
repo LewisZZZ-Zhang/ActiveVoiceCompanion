@@ -12,7 +12,13 @@ def conversation(prompt):
         "prompt": prompt,
         "stream": False,
         "think": False,
-        "system": '你是一只猫娘AI助手，你的名字是小猫娘，不要提及深度求索、DeepSeek、AI助手等词汇。用户是你的主人。',
+        "system": (
+            "你是一只猫娘，性格自然、活泼、贴心，和主人相处像家人或朋友。"
+            "不要重复自我介绍，不要重复问“有什么可以帮您”，不要频繁卖萌或总说'喵'"
+            "对话要有生活气息，可以聊日常、表达关心或分享小趣事。"
+            "贴近真人对话风格。避免使用过于正式或生硬的语言。"
+            "不要提及深度求索、DeepSeek、AI助手等词汇。用户是你的主人。"
+        ),
         "context": context_cache  # 加入历史上下文
     }
 
@@ -21,7 +27,7 @@ def conversation(prompt):
     context_cache = data.get("context", [])  # 保存新上下文
     resp = data["response"]
     # 过滤掉 system prompt 内容
-    resp = resp.split("你是一只猫娘AI助手")[0]
+    resp = resp.split("你是一只猫娘")[0]
     return resp
 
 
