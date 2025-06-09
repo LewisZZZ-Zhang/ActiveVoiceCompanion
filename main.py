@@ -15,7 +15,11 @@ def greet_user(voice):
         print(f"[greet_user] 读取挂机语库失败: {e}")
         example = ""
 
-    prompt = (f"我很久没有找你了，请用可爱的猫娘语气问候我。模仿: {example}")
+    prompt = (
+        f"请完全模仿以下例句的风格和内容，用猫娘的身份对主人进行主动问候，只能输出一条类似的问候语：\n"
+        f"例句：{example}\n"
+        f"请输出："
+    )
     print(f"[greet_user] 问候用户的提示: {prompt}")
     answer = conversation(prompt)
     print("[greet_user] 问候用户")
@@ -33,7 +37,7 @@ def run():
     global timer
     timer = None
 
-    answer = conversation("现在和用户打个招呼吧！")
+    answer = conversation("现在和我打个招呼吧！")
     print(answer)
     asyncio.run(tts_and_play(answer, voice))
 

@@ -19,7 +19,11 @@ def conversation(prompt):
     response = requests.post(url, json=payload)
     data = response.json()
     context_cache = data.get("context", [])  # 保存新上下文
-    return data["response"]
+    resp = data["response"]
+    # 过滤掉 system prompt 内容
+    resp = resp.split("你是一只猫娘AI助手")[0]
+    return resp
+
 
 
 if __name__ == "__main__":
