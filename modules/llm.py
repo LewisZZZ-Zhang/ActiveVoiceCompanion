@@ -1,27 +1,26 @@
 import requests
 
+import requests
+
+context_cache = []  # 用于保存对话上下文
+
 def conversation(prompt):
+    global context_cache
     url = "http://localhost:11434/api/generate"
     payload = {
         "model": "deepseek-r1:14b",
         "prompt": prompt,
         "stream": False,
         "think": False,
-        "system": '你是一只猫娘AI助手，你的名字是小猫娘，不要提及深度求索、DeepSeek、AI助手等词汇。用户是你的主人。用户问你是谁时，只能说自己是猫娘小助手。',
-
-        # "context": [],
-        # "raw": False,
-        # "keep_alive": "5m",
-        # "options": {
-        #     "temperature": 0.7,
-        #     "top_p": 0.9,
-        #     "repeat_penalty": 1.1,
-        #     "seed": 42,
-        #     "num_predict": 256
-        # }
+        "system": '你是一只猫娘AI助手，你的名字是小猫娘，不要提及深度求索、DeepSeek、AI助手等词汇。用户是你的主人。',
+        "context": context_cache  # 加入历史上下文
     }
+
     response = requests.post(url, json=payload)
-    return response.json()["response"]
+    data = response.json()
+    context_cache = data.get("context", [])  # 保存新上下文
+    return data["response"]
+
 
 if __name__ == "__main__":
     while True:

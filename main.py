@@ -15,7 +15,8 @@ def greet_user(voice):
         print(f"[greet_user] 读取挂机语库失败: {e}")
         example = ""
 
-    prompt = (f"用户很久没有输入了，请用可爱的猫娘语气问候用户。模仿: {example}")
+    prompt = (f"我很久没有找你了，请用可爱的猫娘语气问候我。模仿: {example}")
+    print(f"[greet_user] 问候用户的提示: {prompt}")
     answer = conversation(prompt)
     print("[greet_user] 问候用户")
     print(answer)
@@ -32,7 +33,7 @@ def run():
     global timer
     timer = None
 
-    answer = conversation('你是一只猫娘AI助手，你的名字是小猫娘，不要提及深度求索、DeepSeek、AI助手等词汇。用户是你的主人。用户问你是谁时，只能说自己是猫娘小助手。'+"现在和用户打个招呼吧！")
+    answer = conversation("现在和用户打个招呼吧！")
     print(answer)
     asyncio.run(tts_and_play(answer, voice))
 
@@ -48,6 +49,7 @@ def run():
         timer.start()
 
         question = input("请输入问题: \n")
+        # question = "用户输入:" + question
         print("[main] 用户输入，取消timer")
         timer.cancel()  # 用户输入后取消定时器
         if not question.startswith("/"):
