@@ -3,6 +3,7 @@ import threading
 from modules.llm import conversation
 from modules.edgetts import tts_and_play, list_chinese_voices
 import random
+from datetime import datetime
 
 INACTIVE_SECONDS_RANGE = (20, 60)
 
@@ -17,9 +18,10 @@ def greet_user(voice):
 
     prompt = (
         f"请完全模仿以下例句的风格和内容，用猫娘的身份对主人进行主动问候，只能输出一条类似的问候语：\n"
-        f"要自然、有生活气息，避免重复自我介绍"
+        f"要自然、有生活气息，避免重复自我介绍\n"
         f"例句：{example}\n"
         f"请输出："
+        # f"用户一段时间没有找你了，请你主动问候用户"
     )
     print(f"[greet_user] 问候用户的提示: {prompt}")
     answer = conversation(prompt)
@@ -38,7 +40,18 @@ def run():
     global timer
     timer = None
 
-    answer = conversation("现在和我打个招呼吧！")
+    # 获取时间和天气
+    now = datetime.now()
+    date_str = now.strftime("%Y年%m月%d日")
+    time_str = now.strftime("%H:%M")
+    weather_str = "晴，26℃，微风"  # 这里可以接入你的天气API
+
+    answer = conversation(
+        # f"现在是{date_str}，{time_str}，"
+        # f"天气：{weather_str}。"
+        f"请用猫娘的身份和主人打个招呼，要自然、有生活气息，避免自我介绍，也不要问“有什么可以帮您”的话，不要频繁卖萌，不要总是说'喵'，只输出一句。"
+        # f"和用户打招呼"
+    )
     print(answer)
     asyncio.run(tts_and_play(answer, voice))
 
